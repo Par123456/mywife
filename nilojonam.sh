@@ -185,11 +185,6 @@ load=$(load_account "$code")
 
 cards=($(echo "$load" | jq -r '.data.cards[] | select(.power < 100) | .id'))
 
-if [[ ${#cards[@]} -lt 20 ]]; then
-    echo -e "\e[31mYou have less than 20 cards in $(echo "$load" | jq -r '.data.name') account!\e[0m"
-    exit 1
-fi
-
 echo -e "\e[32mYou have successfully connected to $(echo "$load" | jq -r '.data.name') account\e[0m"
 
 read -rp "Enter Your Power: " power
